@@ -1,4 +1,15 @@
-package com.stefan.salapura.htec.pojo;
+package com.stefan.salapura.htec.entity;
+
+import java.time.ZoneId;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /*
  * 1739,"Belgrade Nikola Tesla Airport","Belgrade","Serbia","BEG","LYBE",44.8184013367,20.3090991974,335,1,"E","Europe/Belgrade","airport","OurAirports"
@@ -21,6 +32,70 @@ package com.stefan.salapura.htec.pojo;
  * Source					"OurAirports"
  */
 
+@Entity
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString 
 public class Airport {	
+	
+	@Id
+	private int id;
+	private String name;
+	private String city;
+	private String country;
+	private String iata;
+	private String icao;
+	private Double latitude;
+	private Double longitude;
+	private int altitude;
+	private short timezone;
+	private Character dst;
+	private ZoneId tz; //= ZoneId.of( "Europe/Belgrade" ) ;
+	private String type;
+	private String source;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
