@@ -1,12 +1,14 @@
 package com.stefan.salapura.htec.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +25,9 @@ public class City {
 	private String name;
 	private String country;
 	private String description;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="comment_id")
-	private Comment comment;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="cityId", referencedColumnName="city_id")
+	private Set<Comment> comments;
 
 	public City(String name, String country, String description) {
 		this.name = name;

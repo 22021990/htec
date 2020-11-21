@@ -20,8 +20,10 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String description;
-	Timestamp created;
-	Timestamp modified;
+	private Timestamp created;
+	private Timestamp modified;
+	private int cityId;
+	private int applicationUserId;
 	
 	public Comment(String description) {
 		this.description = description;
