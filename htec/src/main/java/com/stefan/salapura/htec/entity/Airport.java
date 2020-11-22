@@ -3,9 +3,10 @@ package com.stefan.salapura.htec.entity;
 import java.time.ZoneId;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,11 +37,11 @@ import lombok.ToString;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-@AllArgsConstructor 
 @ToString 
 public class Airport {	
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String city;
@@ -55,7 +56,24 @@ public class Airport {
 	private ZoneId tz; //= ZoneId.of( "Europe/Belgrade" ) ;
 	private String type;
 	private String source;
-
+	
+	public Airport(String name, String city, String country, String iata, String icao, Double latitude,
+			Double longitude, int altitude, short timezone, Character dst, ZoneId tz, String type, String source) {
+		this.name = name;
+		this.city = city;
+		this.country = country;
+		this.iata = iata;
+		this.icao = icao;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.altitude = altitude;
+		this.timezone = timezone;
+		this.dst = dst;
+		this.tz = tz;
+		this.type = type;
+		this.source = source;
+	}
+	
 }
 
 
