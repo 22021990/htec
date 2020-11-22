@@ -3,6 +3,7 @@ package com.stefan.salapura.htec.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,17 +17,23 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@ToString
 public class City {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String country;
+	@Column(length = 700, nullable = false)
 	private String description;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="cityId", referencedColumnName="city_id")
+	@JoinColumn(name="cityId", referencedColumnName="id")
 	private Set<Comment> comments;
 
 	public City(String name, String country, String description) {

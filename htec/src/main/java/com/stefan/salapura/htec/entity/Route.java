@@ -28,7 +28,10 @@ import lombok.ToString;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString 
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@ToString 
 public class Route {
 
 	@Id

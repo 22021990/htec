@@ -1,6 +1,9 @@
 package com.stefan.salapura.htec.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -11,9 +14,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@ToString
 public class ApplicationUser {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -22,7 +30,7 @@ public class ApplicationUser {
 	private boolean administrator;
 	private String salt;
 	private String sha256hex;
-	
+
 	public ApplicationUser(String firstName, String lastName, String userName, String password,
 			boolean administrator) {
 		this.firstName = firstName;

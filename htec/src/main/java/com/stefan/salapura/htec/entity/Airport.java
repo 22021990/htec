@@ -33,7 +33,11 @@ import lombok.ToString;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString 
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@AllArgsConstructor 
+@ToString 
 public class Airport {	
 	
 	@Id
