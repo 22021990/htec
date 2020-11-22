@@ -1,14 +1,16 @@
 package com.stefan.salapura.htec.service;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stefan.salapura.htec.entity.ApplicationUser;
-import com.stefan.salapura.htec.entity.City;
-import com.stefan.salapura.htec.entity.Comment;
+import com.stefan.salapura.htec.entity.Airport;
 
 @Service
 public class MainService {
@@ -28,7 +30,76 @@ public class MainService {
 	
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public String readFiles() {
+//		String path = "src/main/resources/static/airports.txt";
+//		List<String> airports = new LinkedList<String>();
+//		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
+//			String line;
+//			while ((line = bufferedReader.readLine()) != null) {
+//				airports.add(line);
+//			}
+//		} catch (Exception exc) {
+//			exc.printStackTrace();
+//		}
+//		
+//		return airports.get(177);
+//	}
+//	
+//	public List<Airport> readFiles2(String cityName) {
+//		String path = "src/main/resources/static/airports.txt";
+//		List<Airport> airports = new LinkedList<Airport>();
+//		try (BufferedReader bufferedReader = new BufferedReader(
+//				new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
+//			String line;
+//			while ((line = bufferedReader.readLine()) != null) {
+//				if (!(line.contains("Belgrade"))) {
+//					continue;
+//				} else {
+//					Airport airport = new Airport(line);
+//					if (airport.getName().equals(cityName)) {
+//						airports.add(airport);
+//					}
+//				}
+//			}
+//		} catch (Exception exc) {
+//			exc.printStackTrace();
+//		}
+//
+//		return airports;
+//	}
+//	
+//	public Airport readFiles3() {
+//		String path = "src/main/resources/static/airports.txt";
+//		List<String> airports = new LinkedList<String>();
+//		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
+//			String line;
+//			while ((line = bufferedReader.readLine()) != null) {
+//				airports.add(line);
+//			}
+//		} catch (Exception exc) {
+//			exc.printStackTrace();
+//		}
+//		
+//		return new Airport(airports.get(1685));
+//	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 //	public void createAllObjectsAndPersist() {

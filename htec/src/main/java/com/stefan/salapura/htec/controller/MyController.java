@@ -1,10 +1,12 @@
 package com.stefan.salapura.htec.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stefan.salapura.htec.entity.Comment;
+import com.stefan.salapura.htec.entity.Airport;
 import com.stefan.salapura.htec.service.MainService;
 
 @RestController
@@ -16,10 +18,35 @@ public class MyController {
 	public MyController(MainService theMainService) {
 		this.mainService = theMainService;
 	}
-
+	
+	
+	
+	
+	
+	
 	
 	
 
+//	@GetMapping("/readFile")
+//	public String readFile() {
+//		return mainService.readFiles();
+//	}
+//	
+//	@GetMapping("/readFile2")
+//	public List<Airport> readFile2() {
+//		return mainService.readFiles2("Belgrade");
+//	}
+//	
+//	@GetMapping("/readFile3")
+//	public Airport readFile3() {
+//		return mainService.readFiles3();
+//	}
+//	
+
+	
+	
+	
+	
 	
 //	@GetMapping("/test")
 //	public String test() {

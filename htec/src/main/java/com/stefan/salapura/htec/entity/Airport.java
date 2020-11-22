@@ -51,9 +51,9 @@ public class Airport {
 	private Double latitude;
 	private Double longitude;
 	private int altitude;
-	private short timezone;
+	private float timezone;
 	private Character dst;
-	private ZoneId tz; //= ZoneId.of( "Europe/Belgrade" ) ;
+	private ZoneId tz; //= ZoneId.of("Europe/Belgrade") ;
 	private String type;
 	private String source;
 	
@@ -73,6 +73,25 @@ public class Airport {
 		this.type = type;
 		this.source = source;
 	}
+	
+//	public Airport(String lineFromFile) {
+//		String[] fields = lineFromFile.split(",");
+//		
+//		this.id = Integer.valueOf(fields[0]);
+//		this.name = fields[1];
+//		this.city = fields[2];
+//		this.country = fields[3];
+//		this.iata = fields[4];
+//		this.icao = fields[5];
+//		this.latitude = Double.valueOf(fields[6]);
+//		this.longitude = Double.valueOf(fields[7]);
+//		this.altitude = Integer.valueOf(fields[8]);
+//		this.timezone = Float.valueOf(fields[9]);
+//		this.dst = fields[10].charAt(0);
+//		this.tz = ZoneId.of(fields[11]);
+//		this.type = fields[12];
+//		this.source = fields[13];
+//	}
 	
 }
 
