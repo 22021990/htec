@@ -1,5 +1,6 @@
 package com.stefan.salapura.htec.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,23 +44,47 @@ public class Route {
 	private int sourceAirportId;
 	private String destinationAirport;
 	private int destinationAirportId;
-	private Character codeshare;
+	private String codeshare;
 	private short stops;
 	private String equipment;
-	private float price;
+	@Column(scale=2)
+	private Double price;
 
-	public Route(String airline, int airlineId, String sourceAirport, int sourceAirportId, String destinationAirport,
-			int destinationAirportId, Character codeshare, short stops, String equipment, float price) {
-		this.airline = airline;
-		this.airlineId = airlineId;
-		this.sourceAirport = sourceAirport;
-		this.sourceAirportId = sourceAirportId;
-		this.destinationAirport = destinationAirport;
-		this.destinationAirportId = destinationAirportId;
-		this.codeshare = codeshare;
-		this.stops = stops;
-		this.equipment = equipment;
-		this.price = price;
+//	public Route(String airline, int airlineId, String sourceAirport, int sourceAirportId, String destinationAirport,
+//			int destinationAirportId, String codeshare, short stops, String equipment, float price) {
+//		this.airline = airline;
+//		this.airlineId = airlineId;
+//		this.sourceAirport = sourceAirport;
+//		this.sourceAirportId = sourceAirportId;
+//		this.destinationAirport = destinationAirport;
+//		this.destinationAirportId = destinationAirportId;
+//		this.codeshare = codeshare;
+//		this.stops = stops;
+//		this.equipment = equipment;
+//		this.price = price;
+//	}
+	
+	public Route(String lineFromFile) {
+		lineFromFile = lineFromFile.replaceAll("\"", "");
+		String fields[] = lineFromFile.split(",");
+		
+
+		this.airline = fields[0];
+		if (!fields[1].equals("\\N")) {
+			this.airlineId = Integer.valueOf(fields[1]);
+		}
+		this.sourceAirport = fields[2];
+		if (!fields[3].equals("\\N")) {
+			this.sourceAirportId = Integer.valueOf(fields[3]);
+		}
+		this.destinationAirport = fields[4];
+		if (!fields[5].equals("\\N")) {
+			this.destinationAirportId = Integer.valueOf(fields[5]);
+		}
+		this.codeshare = fields[6];
+		this.stops = Short.valueOf(fields[7]);
+		this.equipment = fields[8];
+		this.price = Double.valueOf(fields[9]);
 	}
 
 }

@@ -1,12 +1,12 @@
 package com.stefan.salapura.htec.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stefan.salapura.htec.entity.Airport;
+import com.stefan.salapura.htec.entity.City;
 import com.stefan.salapura.htec.service.MainService;
 
 @RestController
@@ -20,6 +20,32 @@ public class MyController {
 	}
 	
 	
+	@PostMapping("/addCity")
+	private Object addCity(@RequestBody City theCity) {
+		return mainService.addCity(theCity);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@GetMapping("/testRoutes")
+//	public List<Route> testRoutes() {
+//		return mainService.insertAndGetRoutesFromDatabase();
+//	}
+	
+	
+	
 	
 	
 	
@@ -31,7 +57,7 @@ public class MyController {
 //	public String readFile() {
 //		return mainService.readFiles();
 //	}
-//	
+	
 //	@GetMapping("/readFile2")
 //	public List<Airport> readFile2() {
 //		return mainService.readFiles2("Belgrade");
@@ -43,6 +69,9 @@ public class MyController {
 //	}
 //	
 
+	
+	
+	
 	
 	
 	
@@ -65,6 +94,7 @@ public class MyController {
 //	}
 	
 
+	
 	
 	
 	

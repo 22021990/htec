@@ -1,0 +1,20 @@
+1.  No lombok.
+2.  No tests.
+3.  No validations on domain model.
+4.  Constructors with 10+ parameters.
+5.  Uses @Embeddable for comments.
+6.  Uses Set for comments without equals and hashcode overrides.
+7.  Has a strange flag newRoutesAdded in the City model that is @Transient.
+8.  Uses directly EntityManager for queries and manuely writes some basic queries.
+9.  Empty try/catch-es blocks.
+10. Have try/catch for javax.persistence.NoResultException for some reason.
+11. Has one service that is called MainService.
+12. Has one controller that is called MainController and this controller has 500 lines of code(all logic is in the controller).
+13. No file upload, files with data are hardcoded in the controller.
+14. Controller has a list of airports and a list of routes, it has a state in the controller.
+15. Data is loaded using @PostConstruct annotation.
+16. Has some salt parameters in request parameters that are used to check if the user is admin.
+17. No valid status codes, as response he is always returning random strings with 200.
+18. Unreadable code with a bunch of nested for and ifs.
+19. Doesn’t know Java streams.
+20. Bad code practice in multiple places in code. 
