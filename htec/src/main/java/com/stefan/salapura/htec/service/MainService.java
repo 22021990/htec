@@ -92,13 +92,7 @@ public class MainService {
 	}
 	
 	
-	/*
-	 * dodamo city
-	 * dodamo airport
-	 * na kraju route, sto znaci da imamo sve airport i cities vec dodate u bazu
-	 * 
-	 * radi, samo da probam da napisem bolji algoritam
-	 */
+	// test code
 	public void addRoutesTest(City theCity) {
 		List<City> cities = cityService.findAllCities();
 		if (cities.size() <= 1) {
