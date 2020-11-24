@@ -20,21 +20,27 @@ public class MyController {
 	}
 	
 	
-//	@PostMapping("/addCity")
-//	private Object addCity(@RequestBody City theCity) {
-//		return mainService.testCascadeWithCityAndComment(theCity);
-//	}
-//	
-//	@PostMapping("/deleteCity")
-//	private Object deleteCity(@RequestBody City theCity) {
-//		mainService.deleteCityAndComment(theCity);
-//		return "Done.";
-//	}
-//	
-//	@GetMapping("/getCity")
-//	private City getCity() {
-//		return mainService.getCity();
-//	}
+	@PostMapping("/addCity")
+	private Object addCity(@RequestBody City theCity) {
+		return mainService.testCascadeWithCityAndComment(theCity);
+	}
+	
+	/*
+	 * obrise grad i sve komentare vezane za taj grad
+	 */
+	@PostMapping("/deleteCity")
+	private Object deleteCity(@RequestBody City theCity) {
+		mainService.deleteCityAndComment(theCity);
+		return "Go see database.";
+	}
+	
+	/*
+	 * obrise samo jedan komentar, sve ostalo ostane
+	 */
+	@GetMapping("/delete1Comment")
+	private Object delete1Comment() {
+		return mainService.deleteOneCommentOnly();
+	}
 	
 	
 	

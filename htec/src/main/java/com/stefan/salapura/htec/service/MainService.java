@@ -41,36 +41,47 @@ public class MainService {
 		this.routeService = theRouteService;
 	}
 	
-	
-	
-	
-	
-//	public Object testCascadeWithCityAndComment(City theCity) {
-//		if (cityService.alreadyExistsInDatabase(theCity)) {
-//
-//			String returnMessage = theCity.getName() + ", " + theCity.getCountry()
-//					+ " already exists in database. Process aborted.";
-//			return returnMessage;
-//		} else {
-//			cityService.persistCity(theCity);
-//			
-//			Comment comment = new Comment("Noice.");
+
+	// TEST CODE
+	public Object testCascadeWithCityAndComment(City theCity) {
+		if (cityService.alreadyExistsInDatabase(theCity)) {
+
+			String returnMessage = theCity.getName() + ", " + theCity.getCountry()
+					+ " already exists in database. Process aborted.";
+			return returnMessage;
+		} else {
+			cityService.persistCity(theCity);
+			
+			Comment comment = new Comment("Noice.");
+			comment.setCity(theCity);
+			commentService.persistComment(comment);
+			theCity.getComments().add(comment);
+			
+			comment = new Comment("Bad");
+			comment.setCity(theCity);
+			commentService.persistComment(comment);
+			theCity.getComments().add(comment);
+			
+//			Comment comment2 = new Comment("Bad.");
 //			comment.setCityId(theCity.getId());
-//			commentService.persistComment(comment);
-//			
-//			return "OK, now delete.";
-//		}
-//	}
-//	
-//	public void deleteCityAndComment(City theCity) {
-//		theCity = cityService.findCityByNameAndCountry(theCity);
-//		cityService.deleteCity(theCity);
-//	}
-//	
-//	public City getCity() {
-//		return cityService.findCityById(1);
-//	}
+//			commentService.persistComment(comment2);
+		
+			return cityService.findCityById(1);
+		}
+	}
 	
+	public void deleteCityAndComment(City theCity) {
+		theCity = cityService.findCityByNameAndCountry(theCity);
+		cityService.deleteCity(theCity);
+	}
+	
+	public Object deleteOneCommentOnly() {
+		List<Comment> comments = commentService.findAllComments();
+		Comment commentToDelete = comments.get(0);
+		commentService.deleteComment(commentToDelete);
+		
+		return cityService.findCityById(1);
+	}
 	
 	
 	

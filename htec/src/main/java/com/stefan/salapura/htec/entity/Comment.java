@@ -3,11 +3,16 @@ package com.stefan.salapura.htec.entity;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +25,9 @@ import lombok.ToString;
 @NoArgsConstructor 
 @ToString
 public class Comment {
+	
+	//TODO:Add unique constraint (city_id, user_id)
+	 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +37,11 @@ public class Comment {
 	@Column(nullable = false)
 	private Timestamp timeCreated;
 	private Timestamp timeModified;
-	private int cityId;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST /*{CascadeType.PERSIST, CascadeType.REMOVE}*/)
+	@JoinColumn(name="city_id")
+	@JsonIgnore
+	private City city;
 	private int applicationUserId;
 	
 	public Comment(String description) {
