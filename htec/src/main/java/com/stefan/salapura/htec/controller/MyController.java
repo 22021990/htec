@@ -20,11 +20,21 @@ public class MyController {
 	}
 	
 	
-	@PostMapping("/addCity")
-	private Object addCity(@RequestBody City theCity) {
-		return mainService.addCity(theCity);
-	}
-	
+//	@PostMapping("/addCity")
+//	private Object addCity(@RequestBody City theCity) {
+//		return mainService.testCascadeWithCityAndComment(theCity);
+//	}
+//	
+//	@PostMapping("/deleteCity")
+//	private Object deleteCity(@RequestBody City theCity) {
+//		mainService.deleteCityAndComment(theCity);
+//		return "Done.";
+//	}
+//	
+//	@GetMapping("/getCity")
+//	private City getCity() {
+//		return mainService.getCity();
+//	}
 	
 	
 	

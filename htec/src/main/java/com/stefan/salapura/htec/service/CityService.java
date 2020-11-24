@@ -50,16 +50,7 @@ public class CityService {
 	
 	@Transactional
 	public boolean alreadyExistsInDatabase(City theCity) {
-		Query query = entityManager.createQuery("from City where name=:name and country=:country");
-		query.setParameter("name", theCity.getName());
-		query.setParameter("country", theCity.getCountry());
-		
-		City cityFromDatabase = null;
-		try {
-			cityFromDatabase = (City) query.getSingleResult();
-		} catch(NoResultException noResultException) {
-			//ignore
-		}
+		City cityFromDatabase = searchByNameAndCountry(theCity);
 		
 		if(cityFromDatabase == null) {
 			return false;
@@ -68,4 +59,23 @@ public class CityService {
 		return true;
 	}
 	
+	@Transactional
+	public City findCityByNameAndCountry(City theCity) {
+		return searchByNameAndCountry(theCity);
+	}
+	
+	private City searchByNameAndCountry(City theCity) {
+		Query query = entityManager.createQuery("from City where name=:name and country=:country");
+		query.setParameter("name", theCity.getName());
+		query.setParameter("country", theCity.getCountry());
+		
+		City cityFromDatabase = null;
+		try {
+			cityFromDatabase = (City) query.getSingleResult();	// if there isn't one it throws NoResultException
+		} catch(NoResultException noResultException) {
+			//ignore
+		}
+		
+		return cityFromDatabase;
+	}
 }

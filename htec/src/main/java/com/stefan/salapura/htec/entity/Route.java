@@ -49,20 +49,6 @@ public class Route {
 	private String equipment;
 	@Column(scale=2)
 	private Double price;
-
-//	public Route(String airline, int airlineId, String sourceAirport, int sourceAirportId, String destinationAirport,
-//			int destinationAirportId, String codeshare, short stops, String equipment, float price) {
-//		this.airline = airline;
-//		this.airlineId = airlineId;
-//		this.sourceAirport = sourceAirport;
-//		this.sourceAirportId = sourceAirportId;
-//		this.destinationAirport = destinationAirport;
-//		this.destinationAirportId = destinationAirportId;
-//		this.codeshare = codeshare;
-//		this.stops = stops;
-//		this.equipment = equipment;
-//		this.price = price;
-//	}
 	
 	public Route(String lineFromFile) {
 		lineFromFile = lineFromFile.replaceAll("\"", "");

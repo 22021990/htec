@@ -70,14 +70,17 @@ public class AirportService {
 	public List<Integer> findAirportIDs() {
 		Query query = entityManager.createQuery("select id from Airport");
 		
-		List<Integer> airportIDs = null;
-		try {
-			airportIDs = query.getResultList();
-		} catch(NoResultException noResultException) {
-			//ignore
-		}
+		// query.getResultList() ne baca NoResultException nego vrati praznu listu
+//		List<Integer> airportIDs = null;
+//		try {
+//			airportIDs = query.getResultList();
+//		} catch(NoResultException noResultException) {
+//			//ignore
+//		}
+//		
+//		return airportIDs;
 		
-		return airportIDs;
+		return query.getResultList();
 	}
 	
 }

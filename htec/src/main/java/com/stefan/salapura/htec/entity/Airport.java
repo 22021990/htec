@@ -60,23 +60,6 @@ public class Airport {
 	private String type;
 	private String source;
 	
-//	public Airport(String name, String city, String country, String iata, String icao, Double latitude,
-//			Double longitude, int altitude, short timezone, Character dst, ZoneId tz, String type, String source) {
-//		this.name = name;
-//		this.city = city;
-//		this.country = country;
-//		this.iata = iata;
-//		this.icao = icao;
-//		this.latitude = latitude;
-//		this.longitude = longitude;
-//		this.altitude = altitude;
-//		this.timezone = timezone;
-//		this.dst = dst;
-//		this.tz = tz;
-//		this.type = type;
-//		this.source = source;
-//	}
-	
 	public Airport(String lineFromFile) {
 		lineFromFile = lineFromFile.replaceAll("\"", "");
 		lineFromFile = lineFromFile.replaceAll(", ", "*");

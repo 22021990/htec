@@ -32,6 +32,7 @@ public class City {
 	private String country;
 	@Column(length = 700, nullable = false)
 	private String description;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="cityId", referencedColumnName="id")
 	private Set<Comment> comments;

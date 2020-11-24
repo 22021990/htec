@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.stefan.salapura.htec.entity.Airport;
 import com.stefan.salapura.htec.entity.City;
+import com.stefan.salapura.htec.entity.Comment;
 import com.stefan.salapura.htec.entity.Route;
 
 @Service
@@ -41,6 +42,56 @@ public class MainService {
 	}
 	
 	
+	
+	
+	
+//	public Object testCascadeWithCityAndComment(City theCity) {
+//		if (cityService.alreadyExistsInDatabase(theCity)) {
+//
+//			String returnMessage = theCity.getName() + ", " + theCity.getCountry()
+//					+ " already exists in database. Process aborted.";
+//			return returnMessage;
+//		} else {
+//			cityService.persistCity(theCity);
+//			
+//			Comment comment = new Comment("Noice.");
+//			comment.setCityId(theCity.getId());
+//			commentService.persistComment(comment);
+//			
+//			return "OK, now delete.";
+//		}
+//	}
+//	
+//	public void deleteCityAndComment(City theCity) {
+//		theCity = cityService.findCityByNameAndCountry(theCity);
+//		cityService.deleteCity(theCity);
+//	}
+//	
+//	public City getCity() {
+//		return cityService.findCityById(1);
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
 	public Object addCity(City theCity) {
 		//check does city, country pair already exists in database
 		if(cityService.alreadyExistsInDatabase(theCity)) {
@@ -58,7 +109,7 @@ public class MainService {
 			airportService.persistAirports(airportsForNewCity);
 			
 			//add new routes
-//			addRoutesTest(theCity);
+			addRoutesTest(theCity);
 			
 			//return airports from database
 			return findAirportsFromDatabseForCity(theCity);
@@ -86,6 +137,7 @@ public class MainService {
 		return airportsForCity;
 	}
 	
+	// ovaj metod je pogodan za brisanje
 	public List<Airport> findAirportsFromDatabseForCity(City theCity) {
 		List<Airport> airportsForCity = airportService.findAirportsForCity(theCity);
 		return airportsForCity;
@@ -105,10 +157,11 @@ public class MainService {
 		// mozemo ovo da radimo jer su vec dodati u bazu
 		List<Airport> newCityAirports = airportService.findAirportsForCity(theCity);
 		newCityAirports.forEach(newCityAirport -> {
-			String keyWord = String.valueOf(newCityAirport.getId());
+			int thisAirportId = newCityAirport.getId();
+			String keyWord = String.valueOf(thisAirportId);
 
-			List<Integer> restAirports = new ArrayList<Integer>(allAirportIDs);
-			restAirports.remove(Integer.valueOf(newCityAirport.getId()));
+			List<Integer> restAirportIDsFromDatabase = new ArrayList<Integer>(allAirportIDs);
+			restAirportIDsFromDatabase.remove(Integer.valueOf(thisAirportId)); //mora ovako, inace trazi po index-u
 
 			try (BufferedReader bufferedReader = new BufferedReader(
 					new InputStreamReader(new FileInputStream(ROUTES_FILE_PATH), StandardCharsets.UTF_8))) {
@@ -116,17 +169,19 @@ public class MainService {
 				while ((line = bufferedReader.readLine()) != null) {
 					if (line.contains(keyWord)) {
 						Route route = new Route(line);
-						if (route.getAirlineId() == Integer.valueOf(keyWord)
-								|| route.getStops() == Short.valueOf(keyWord) || route.getEquipment().equals(keyWord)
-								|| (!(route.getSourceAirportId() == Integer.valueOf(keyWord)) && !(route.getDestinationAirportId() == Integer.valueOf(keyWord)))) {
+						if (route.getAirlineId() == thisAirportId
+								|| route.getStops() == Short.valueOf(keyWord) 
+								|| route.getEquipment().equals(keyWord)
+								|| (!(route.getSourceAirportId() == thisAirportId) && !(route.getDestinationAirportId() == thisAirportId))) {
 							continue;
 						}
 
-						Integer otherAirportId = (route.getSourceAirportId() == Integer.valueOf(keyWord))
+						// id aerodroma sa druge strane leta, bilo pocetna ili krajnja tacka
+						Integer partnerAirportId = (route.getSourceAirportId() == thisAirportId)
 								? route.getDestinationAirportId()
 								: route.getSourceAirportId();
 
-						if (restAirports.contains(otherAirportId)) {
+						if (restAirportIDsFromDatabase.contains(partnerAirportId)) {
 							routesToAdd.add(route);
 						}
 					}
