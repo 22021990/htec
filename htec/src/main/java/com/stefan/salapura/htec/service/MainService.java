@@ -114,7 +114,15 @@ public class MainService {
 		System.out.println(city);
 		return city;
 	}
-	
+	/*
+	 * ovo je bio samo lud test razumevanja entity manager ili ti first lvl cache. uzmemo objekat, izmenimo ga, i pozovemo prazan metod koji otvori konekciju sa bazom i komituje.
+	 * videce da je city entitet prljav, i komitovace novo stanje, jako zajebano.
+	 */
+//	public void brmbrmmm() {
+//		City city = cityService.findCityById(1);
+//		city.setName("Plazanae");
+//		cityService.test();
+//	}
 	
 	
 	

@@ -74,6 +74,11 @@ public class CityService {
 		entityManager.merge(theCity);
 	}
 	
+//	@Transactional
+//	public void test() {
+//		System.out.println("brmbrmmmmm");
+//	}
+	
 	private City searchByNameAndCountry(City theCity) {
 		Query query = entityManager.createQuery("from City where name=:name and country=:country");
 		query.setParameter("name", theCity.getName());
