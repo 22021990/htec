@@ -42,6 +42,11 @@ public class MyController {
 		return mainService.deleteOneCommentOnly();
 	}
 	
+	@GetMapping("/update")
+	private Object updateCity() {
+		return mainService.updateCity();
+	}
+	
 	
 	
 	

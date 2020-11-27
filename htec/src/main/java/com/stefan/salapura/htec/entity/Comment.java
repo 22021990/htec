@@ -23,7 +23,7 @@ import lombok.ToString;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-@ToString
+//@ToString
 public class Comment {
 	
 	//TODO:Add unique constraint (city_id, user_id)
@@ -64,5 +64,16 @@ public class Comment {
     public int hashCode() {
         return Objects.hash(this.id);
     }
+
+    /*
+     * ovde printujemo cityId da bi sprecili StackOverflowError -> String objekat preplavi stack memoriju jer imamo 'rekurziju'.
+     * comment objekat u sebi ima referencu ka city objektu, koji u sebi ima referencu ka comment objektu, koji u sebi ima referencu ka city objektu itd...
+     * u stvari imamo samo dva objekta u memoriji ali imamo tu rekurziju sa referencama i ako pozovemo toString(), return String ce postati prevelik u jednom trenutku.
+     */
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", description=" + description + ", timeCreated=" + timeCreated + ", timeModified="
+				+ timeModified + ", cityId=" + city.getId() + ", applicationUserId=" + applicationUserId + "]";
+	}
     
 }

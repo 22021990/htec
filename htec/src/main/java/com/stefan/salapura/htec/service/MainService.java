@@ -15,6 +15,7 @@ import com.stefan.salapura.htec.entity.Airport;
 import com.stefan.salapura.htec.entity.City;
 import com.stefan.salapura.htec.entity.Comment;
 import com.stefan.salapura.htec.entity.Route;
+import com.stefan.salapura.htec.repository.CityRepository;
 
 @Service
 public class MainService {
@@ -52,20 +53,22 @@ public class MainService {
 		} else {
 			cityService.persistCity(theCity);
 			
-			Comment comment = new Comment("Noice.");
+			Comment comment = new Comment("Noice");
 			comment.setCity(theCity);
 			commentService.persistComment(comment);
-			theCity.getComments().add(comment);
+//			theCity.getComments().add(comment);
 			
 			comment = new Comment("Bad");
 			comment.setCity(theCity);
 			commentService.persistComment(comment);
-			theCity.getComments().add(comment);
+//			theCity.getComments().add(comment);
 			
 //			Comment comment2 = new Comment("Bad.");
 //			comment.setCityId(theCity.getId());
 //			commentService.persistComment(comment2);
 		
+			cityService.refreshEntity(theCity);
+			
 			return cityService.findCityById(1);
 		}
 	}
@@ -81,6 +84,35 @@ public class MainService {
 		commentService.deleteComment(commentToDelete);
 		
 		return cityService.findCityById(1);
+	}
+	
+	/*
+	 * isto rade i 1 i 2. merge mozda nema logike jer nismo nikada ni detach-ovali ovaj city objekat, entityManager iliti peristence context je otvoren sve vreme.
+	 * ne zatvaramo ga, tako da entitet nikada i ne odlazi u detached stanje pa da moramo da ga merge-ujemo.
+	 * a JPA je ocigledno dovoljno pametan da kada izmenimo stanje objekta u persistece contextu (iliti first level cache-u) i komitujemo transakciju, JPA uradi update.
+	 * to je onaj automatic dirty checking mehanizam persistence context-a!
+	 * 
+	 * zato mozda merge nema logike, mislim da je pravilnije koristiti persist.
+	 */
+	public Object updateCity() {
+		City city = cityService.findCityById(1);
+		System.out.println(city);
+		city.setName("Kragujevac");
+		cityService.persistCity(city);
+		System.out.println(city);
+		cityService.refreshEntity(city);
+		System.out.println(city);
+		return city;
+	}
+	public Object updateCity2() {
+		City city = cityService.findCityById(1);
+		System.out.println(city);
+		city.setName("Kragujevac");
+		cityService.mergeCity(city);
+		System.out.println(city);
+		cityService.refreshEntity(city);
+		System.out.println(city);
+		return city;
 	}
 	
 	

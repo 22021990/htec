@@ -64,6 +64,16 @@ public class CityService {
 		return searchByNameAndCountry(theCity);
 	}
 	
+	@Transactional
+	public void refreshEntity(City theCity) {
+		entityManager.refresh(theCity);
+	}
+	
+	@Transactional
+	public void mergeCity(City theCity) {
+		entityManager.merge(theCity);
+	}
+	
 	private City searchByNameAndCountry(City theCity) {
 		Query query = entityManager.createQuery("from City where name=:name and country=:country");
 		query.setParameter("name", theCity.getName());
@@ -78,4 +88,5 @@ public class CityService {
 		
 		return cityFromDatabase;
 	}
+	
 }

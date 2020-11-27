@@ -3,6 +3,7 @@ package com.stefan.salapura.htec.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class City {
 	@Column(length = 700, nullable = false)
 	private String description;
 	
-	@OneToMany(mappedBy = "city", orphanRemoval = true)
+	@OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
 	private Set<Comment> comments = new HashSet<Comment>();
 
 	public City(String name, String country, String description) {
